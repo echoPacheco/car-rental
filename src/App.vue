@@ -1,26 +1,50 @@
+<!-- App.vue -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <header>
+      <h1>{{ title }}</h1>
+      <nav>
+        <router-link to="/">CarHome</router-link>
+        <router-link to="/BookingCar">BookingCar</router-link>
+        <!-- Add more navigation links as needed -->
+      </nav>
+    </header>
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      title: 'Car Rental App',
+    };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+/* Add global styles here */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #3498db;
+  color: #fff;
+  padding: 1em;
+}
+
+nav {
+  display: flex;
+  gap: 1em;
+}
+
+main {
+  padding: 1em;
 }
 </style>

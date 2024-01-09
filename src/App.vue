@@ -1,12 +1,31 @@
-<!-- App.vue -->
 <template>
   <div id="app">
     <header>
-      <h1>{{ title }}</h1>
-      <nav>
-        <router-link to="/">CarHome</router-link>
-        <router-link to="/BookingCar">BookingCar</router-link>
-        <!-- Add more navigation links as needed -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <router-link to="/" class="navbar-brand" exact>My Car</router-link>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <router-link to="/" class="nav-link" exact>Home</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/cars" class="nav-link">Book</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/about_us" class="nav-link disabled" aria-disabled="true">About Us</router-link>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-secondary" style="color: white;" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
       </nav>
     </header>
     <main>
@@ -19,32 +38,8 @@
 export default {
   data() {
     return {
-      title: 'Car Rental App',
+      title: 'My Car',
     };
   },
 };
 </script>
-
-<style>
-/* Add global styles here */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #3498db;
-  color: #fff;
-  padding: 1em;
-}
-
-nav {
-  display: flex;
-  gap: 1em;
-}
-
-main {
-  padding: 1em;
-}
-</style>

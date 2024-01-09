@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <h1>Welcome to our Car Rental Service</h1>
-    <p>Explore our fleet and find the perfect car for your journey.</p>
-    <router-link to="/cars" class="btn btn-primary">View Cars</router-link>
-  </div>
+  <container>
+    <img src="../assets/home_screen.jpg" class="home-img">
+    <div class="home-content">
+      Drive in style with our premium car rentals, where luxury meets the open road.
+      <router-link to="/cars" type="button" class="btn btn-outline-light mt-4">Book</router-link>
+    </div>
+  </container>
 
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -66,6 +68,11 @@ export default {
 </script>
   
 <style scoped>
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 .colors {
   color: black;
   background-color: black;
@@ -79,6 +86,24 @@ h1 {
 p {
   font-size: 1.2em;
   margin-bottom: 20px;
+}
+
+.home-img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: cover;
+  filter: brightness(40%);
+}
+.home-content {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 28pt;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .carousel {

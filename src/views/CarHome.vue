@@ -2,9 +2,7 @@
   <div>
     <h1>Welcome to our Car Rental Service</h1>
     <p>Explore our fleet and find the perfect car for your journey.</p>
-
     <router-link to="/cars" class="btn btn-primary">View Cars</router-link>
-
   </div>
 
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -68,7 +66,6 @@ export default {
 </script>
   
 <style scoped>
-
 .colors {
   color: black;
   background-color: black;
@@ -88,15 +85,18 @@ p {
   display: flex;
   flex-direction: row;
 }
+
 .carousel-img {
   width: 60vw;
   height: 400px;
 }
 
 .text-buttons {
-  width: 40%; /* Adjust as needed */
+  width: 40%;
+  /* Adjust as needed */
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Semi-transparent white background */
 }
 
 .text-buttons h1 {
@@ -109,10 +109,10 @@ p {
 }
 
 .btn-info {
-  background-color: #17a2b8; /* Bootstrap's default info color */
+  background-color: #17a2b8;
+  /* Bootstrap's default info color */
   color: #fff;
   border: none;
 }
-
 </style>
   

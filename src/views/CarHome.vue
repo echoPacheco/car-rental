@@ -3,7 +3,7 @@
     <img src="../assets/home_screen.jpg" class="home-img">
     <div class="home-content">
       Drive in style with our premium car rentals, where luxury meets the open road.
-      <router-link to="/cars" type="button" class="btn btn-outline-light mt-4">Book</router-link>
+      <router-link to="/cars" type="button" class="btn btn-outline-light mt-4" style="width: 30%;">Book</router-link>
     </div>
   </container>
 
@@ -100,6 +100,7 @@ p {
   color: white;
   font-size: 28pt;
   text-align: center;
+  align-items: center;
   position: absolute;
   top: 30%;
   left: 50%;

@@ -7,8 +7,7 @@
     </div>
   </container>
 
-  <container>
-
+  <container class="container">
     <div id="popularCars" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#popularCars" data-bs-slide-to="0" class="active" aria-current="true"
@@ -21,7 +20,7 @@
           <img src="../assets/popular2.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
             <h1>{{ this.popularCars[0].name }}</h1>
-            <p>{{ this.popularCars[0].type +" "+ this.popularCars[0].price }}</p>
+            <p>{{ this.popularCars[0].type + " " + this.popularCars[0].price }}</p>
             <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
               style="width: 30%;">Book</router-link>
           </div>
@@ -29,17 +28,19 @@
         <div class="carousel-item">
           <img src="../assets/range_rover.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
-            <h1>Car Title 2</h1>
-            <p>Description for Car 2</p>
-            <button class="btn btn-info">Learn More</button>
+            <h1>{{ this.popularCars[1].name }}</h1>
+            <p>{{ this.popularCars[1].type + " " + this.popularCars[1].price }}</p>
+            <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
+              style="width: 30%;">Book</router-link>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../assets/relampago-mcqueen.png" class="carousel-img" alt="...">
+          <img src="../assets/popular3.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
-            <h1>Car Title 3</h1>
-            <p>Description for Car 3</p>
-            <button class="btn btn-info">Learn More</button>
+            <h1>{{ this.popularCars[2].name }}</h1>
+            <p>{{ this.popularCars[2].type + " " + this.popularCars[2].price }}</p>
+            <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
+              style="width: 30%;">Book</router-link>
           </div>
         </div>
       </div>
@@ -62,8 +63,20 @@ export default {
       popularCars: [
         {
           name: "Audi 6",
-          type: "Sedan",
+          type: "Hatchback",
+          price: "90,00",
+          img: "../assets/popular2.jpg"
+        },
+        {
+          name: "Range Rover",
+          type: "Hatchback",
           price: "80,00",
+          img: "../assets/popular2.jpg"
+        },
+        {
+          name: "C 63 S Coupe",
+          type: "Sedan",
+          price: "120,00",
           img: "../assets/popular2.jpg"
         }
       ],
@@ -77,6 +90,10 @@ export default {
 </script>
   
 <style scoped>
+
+container {
+  margin-bottom: 5px;
+}
 .colors {
   color: black;
   background-color: black;
@@ -116,7 +133,7 @@ export default {
 .carousel-content {
   width: 40%;
   padding: 20px;
-  background-color: #1e2022;
+  background-color: #222529;
 }
 
 .btn-info {

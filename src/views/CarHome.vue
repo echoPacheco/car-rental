@@ -54,6 +54,48 @@
       </button>
     </div>
   </container>
+
+  <container>
+  <div class="company">
+    <div class="company-img-container">
+      <img src="../assets/company.jpg" class="company-img">
+    </div>
+    <div class="company-info">
+      <h1 style="padding: 10px;">Why choose us</h1>
+      <div class="company-txt-columns">
+        <div class="company-column">
+          <div class="company-txt">
+            <h2>Diverse Fleet of Vehicles</h2>
+            Whether you're cruising solo, traveling with family, or planning a group adventure, we've got the perfect
+            vehicle for you. Our diverse fleet includes sleek sedans, spacious SUVs, and even fuel-efficient hybrids,
+            ensuring you find the ideal ride for every occasion.
+          </div>
+          <div class="company-txt">
+            <h2>Easy Booking Process</h2>
+            Say goodbye to complicated booking procedures! Our user-friendly online platform lets you reserve your dream car
+            in just a few clicks. Need assistance? Our dedicated customer support team is always ready to help, ensuring a
+            smooth booking experience from start to finish.
+          </div>
+        </div>
+        <div class="company-column">
+          <div class="company-txt">
+            <h2>Transparent Pricing</h2>
+            No hidden fees, no surprises – just transparent pricing. We believe in providing our customers with clear and
+            competitive rates, so you can plan your journey without any budgetary concerns. What you see is what you pay!
+          </div>
+          <div class="company-txt">
+            <h2>Convenient Pickup and Drop-off</h2>
+            Your convenience is our priority. Choose from multiple pickup and drop-off locations to suit your schedule.
+            Whether it's at the airport, your hotel, or any other specified location, we make it easy for you to start and
+            end your rental with ease.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</container>
+
+
 </template>
   
 <script>
@@ -90,10 +132,6 @@ export default {
 </script>
   
 <style scoped>
-
-container {
-  margin-bottom: 5px;
-}
 .colors {
   color: black;
   background-color: black;
@@ -128,6 +166,8 @@ container {
   width: 60vw;
   height: 400px;
   object-fit: cover;
+  border-radius: 10px;
+
 }
 
 .carousel-content {
@@ -140,5 +180,53 @@ container {
   background-color: #17a2b8;
   border: none;
 }
+
+.company {
+  display: flex;
+}
+
+.company-img-container {
+  position: relative;
+  width: 40vw;
+  height: auto;
+  overflow: hidden;
+}
+
+.company-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.company-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  width: 60vw;
+}
+
+.company-txt-columns {
+  display: flex;
+}
+
+.company-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 15px;
+}
+
+.company-txt {
+  background-color: #222529;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  z-index: 2;
+  height: 230px; /* Ajuste a altura conforme necessário */
+  overflow: hidden;
+}
+
 </style>
   

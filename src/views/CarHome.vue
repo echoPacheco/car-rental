@@ -1,6 +1,6 @@
 <template>
   <container>
-    <img src="../assets/home_screen.jpg" class="home-img">
+    <img src="@/assets/home_screen.jpg" class="home-img">
     <div class="home-content">
       Drive in style with our premium car rentals, where luxury meets the open road.
       <router-link to="/cars" type="button" class="btn btn-outline-light mt-4" style="width: 30%;">Book</router-link>
@@ -17,7 +17,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../assets/popular2.jpg" class="carousel-img" alt="...">
+          <img src="@/assets/popular2.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
             <h1>{{ this.popularCars[0].name }}</h1>
             <p>{{ this.popularCars[0].type + " " + this.popularCars[0].price }}</p>
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../assets/range_rover.jpg" class="carousel-img" alt="...">
+          <img src="@/assets/range_rover.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
             <h1>{{ this.popularCars[1].name }}</h1>
             <p>{{ this.popularCars[1].type + " " + this.popularCars[1].price }}</p>
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="../assets/popular3.jpg" class="carousel-img" alt="...">
+          <img src="@/assets/popular3.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
             <h1>{{ this.popularCars[2].name }}</h1>
             <p>{{ this.popularCars[2].type + " " + this.popularCars[2].price }}</p>
@@ -56,62 +56,75 @@
   </div>
 
   <container>
-  <div class="company">
-    <div class="company-img-container">
-      <img src="../assets/company.jpg" class="company-img">
-    </div>
-    <div class="company-info">
-      <h1 style="padding: 10px;">Why choose us</h1>
-      <div class="company-txt-columns">
-        <div class="company-column">
-          <div class="company-txt">
-            <h2>Diverse Fleet of Vehicles</h2>
-            Whether you're cruising solo, traveling with family, or planning a group adventure, we've got the perfect
-            vehicle for you. Our diverse fleet includes sleek sedans, spacious SUVs, and even fuel-efficient hybrids,
-            ensuring you find the ideal ride for every occasion.
+    <div class="company">
+      <div class="company-img-container">
+        <img src="@/assets/company.jpg" class="company-img">
+      </div>
+      <div class="company-info">
+        <h1 style="padding: 10px;">Why choose us</h1>
+        <div class="company-txt-columns">
+          <div class="company-column">
+            <div class="company-txt">
+              <h2>Diverse Fleet of Vehicles</h2>
+              Whether you're cruising solo, traveling with family, or planning a group adventure, we've got the perfect
+              vehicle for you. Our diverse fleet includes sleek sedans, spacious SUVs, and even fuel-efficient hybrids,
+              ensuring you find the ideal ride for every occasion.
+            </div>
+            <div class="company-txt">
+              <h2>Easy Booking Process</h2>
+              Say goodbye to complicated booking procedures! Our user-friendly online platform lets you reserve your dream
+              car
+              in just a few clicks. Need assistance? Our dedicated customer support team is always ready to help, ensuring
+              a
+              smooth booking experience from start to finish.
+            </div>
           </div>
-          <div class="company-txt">
-            <h2>Easy Booking Process</h2>
-            Say goodbye to complicated booking procedures! Our user-friendly online platform lets you reserve your dream car
-            in just a few clicks. Need assistance? Our dedicated customer support team is always ready to help, ensuring a
-            smooth booking experience from start to finish.
-          </div>
-        </div>
-        <div class="company-column">
-          <div class="company-txt">
-            <h2>Transparent Pricing</h2>
-            No hidden fees, no surprises – just transparent pricing. We believe in providing our customers with clear and
-            competitive rates, so you can plan your journey without any budgetary concerns. What you see is what you pay!
-          </div>
-          <div class="company-txt">
-            <h2>Convenient Pickup and Drop-off</h2>
-            Your convenience is our priority. Choose from multiple pickup and drop-off locations to suit your schedule.
-            Whether it's at the airport, your hotel, or any other specified location, we make it easy for you to start and
-            end your rental with ease.
+          <div class="company-column">
+            <div class="company-txt">
+              <h2>Transparent Pricing</h2>
+              No hidden fees, no surprises – just transparent pricing. We believe in providing our customers with clear
+              and
+              competitive rates, so you can plan your journey without any budgetary concerns. What you see is what you
+              pay!
+            </div>
+            <div class="company-txt">
+              <h2>Convenient Pickup and Drop-off</h2>
+              Your convenience is our priority. Choose from multiple pickup and drop-off locations to suit your schedule.
+              Whether it's at the airport, your hotel, or any other specified location, we make it easy for you to start
+              and
+              end your rental with ease.
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </container>
+
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+          <svg class="bi" width="30" height="24">
+            <use xlink:href="#bootstrap"></use>
+          </svg>
+        </a>
+        <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+      </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+              <use xlink:href="#twitter"></use>
+            </svg></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+              <use xlink:href="#instagram"></use>
+            </svg></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+              <use xlink:href="#facebook"></use>
+            </svg></a></li>
+      </ul>
+    </footer>
   </div>
-</container>
-
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-      <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
-    </div>
-
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-    </ul>
-  </footer>
-</div>
-
+  
 </template>
   
 <script>
@@ -123,19 +136,19 @@ export default {
           name: "Audi 6",
           type: "Hatchback",
           price: "90,00",
-          img: "../assets/popular2.jpg"
+          img: "@/assets/popular2.jpg"
         },
         {
           name: "Range Rover",
           type: "Hatchback",
           price: "80,00",
-          img: "../assets/popular2.jpg"
+          img: "@/assets/popular2.jpg"
         },
         {
           name: "C 63 S Coupe",
           type: "Sedan",
           price: "120,00",
-          img: "../assets/popular2.jpg"
+          img: "@/assets/popular2.jpg"
         }
       ],
     };
@@ -148,9 +161,8 @@ export default {
 </script>
   
 <style scoped>
-.colors {
-  color: black;
-  background-color: black;
+.container {
+  margin-bottom: 15px;
 }
 
 .home-img {
@@ -240,9 +252,7 @@ export default {
   margin-bottom: 15px;
   border-radius: 10px;
   z-index: 2;
-  height: 230px; /* Ajuste a altura conforme necessário */
+  height: 230px;
   overflow: hidden;
-}
-
-</style>
+}</style>
   

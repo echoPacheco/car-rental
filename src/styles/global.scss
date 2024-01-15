@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import '~bootstrap-icons/font/bootstrap-icons.css';
 
 html,
 body {
@@ -24,8 +25,13 @@ body {
     gap: 1em;
   }
 
+.footer-content {
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
 .btn-outline-primary:active {
-  color: #52616b; /* Change text color on active state if needed */
+  color: #52616b;
   background-color: var(--bs-primary);
   border-color: var(--bs-primary);
 }

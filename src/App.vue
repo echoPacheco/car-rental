@@ -31,6 +31,21 @@
     <main>
       <router-view></router-view>
     </main>
+    <footer class="d-flex flex-wrap justify-content-between align-middle py-3 my-4 border-top">
+      <ul class="col-md-4 d-flex align-items-center">
+        <a href="https://github.com/echoPacheco" target="_blank" rel="noopener noreferrer" class="text-light">
+        <i class="bi bi-github h4 ms-5"></i></a>
+        <a href="https://www.linkedin.com/in/mateus-pacheco-174b30185/" target="_blank" rel="noopener noreferrer" class="text-light">
+
+        <i class="bi bi-linkedin h4 ms-3"></i></a>
+      </ul>
+      <div class="nav col-md-4 justify-content-end list-unstyled d-flex footer-content">
+        <span class="mb-3 mb-md-0 footer-content">
+          <i class="bi bi-car-front-fill h4 me-2 align-middle"></i> 
+          <span class="mb-0">Mateus Pacheco</span>
+        </span>
+      </div>
+    </footer>
   </div>
 </template>
 

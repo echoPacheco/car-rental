@@ -21,11 +21,15 @@
           <div class="carousel-content">
             <h1>{{ this.popularCars[0].name }}</h1>
             <p>{{ this.popularCars[0].type + " " + this.popularCars[0].price }}</p>
+            <i class="bi bi-fuel-pump-fill"></i>
+            <i class="bi bi-cash"></i>
+            <img src="@/assets/car_door.svg" class="svg-color">
+            <img src="@/assets/car_seat.svg" class="svg-color">
             <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
               style="width: 30%;">Book</router-link>
           </div>
         </div>
-        <div class="carousel-item">
+        <!-- <div class="carousel-item">
           <img src="@/assets/range_rover.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
             <h1>{{ this.popularCars[1].name }}</h1>
@@ -42,7 +46,7 @@
             <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
               style="width: 30%;">Book</router-link>
           </div>
-        </div>
+        </div> -->
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#popularCars" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

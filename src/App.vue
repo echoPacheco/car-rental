@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <header>
+      <div class="nav-conteiner">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <router-link to="/" class="navbar-brand" exact>My Car</router-link>
@@ -27,6 +28,7 @@
           </div>
         </div>
       </nav>
+    </div>
     </header>
     <main>
       <router-view></router-view>

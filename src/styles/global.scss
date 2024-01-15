@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 html,
 body {
@@ -9,21 +9,33 @@ body {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: #1e2022;
-    padding: 1em;
-  }
-  
-  nav {
-    display: flex;
-    gap: 1em;
-  }
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1e2022;
+  padding: 1em;
+}
+
+.nav-conteiner {
+  overflow: hidden;
+  background: #1e2022;
+  position: fixed;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+nav {
+  display: flex;
+  gap: 1em;
+}
 
 .footer-content {
   margin-left: 10%;
@@ -34,4 +46,7 @@ body {
   color: #52616b;
   background-color: var(--bs-primary);
   border-color: var(--bs-primary);
+}
+.svg-color {
+  filter: grayscale(0%);
 }

@@ -33,7 +33,7 @@
     <main>
       <router-view></router-view>
     </main>
-    <footer class="d-flex flex-wrap justify-content-between align-middle py-3 my-4 border-top">
+    <footer class="d-flex flex-wrap justify-content-between align-middle pt-3 mt-4 border-top">
       <ul class="col-md-4 d-flex align-items-center">
         <a href="https://github.com/echoPacheco" target="_blank" rel="noopener noreferrer" class="text-light">
         <i class="bi bi-github h4 ms-5"></i></a>

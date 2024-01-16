@@ -34,7 +34,7 @@
       <router-view></router-view>
     </main>
     <footer class="d-flex flex-wrap justify-content-between align-middle pt-3 mt-4 border-top">
-      <ul class="col-md-4 d-flex align-items-center">
+      <ul class="col-md-4 d-flex align-items-center ms-3">
         <a href="https://github.com/echoPacheco" target="_blank" rel="noopener noreferrer" class="text-light">
         <i class="bi bi-github h4 ms-5"></i></a>
         <a href="https://www.linkedin.com/in/mateus-pacheco-174b30185/" target="_blank" rel="noopener noreferrer" class="text-light">

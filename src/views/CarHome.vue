@@ -29,7 +29,7 @@
               style="width: 30%;">Book</router-link>
           </div>
         </div>
-        <!-- <div class="carousel-item">
+        <div class="carousel-item">
           <img src="@/assets/range_rover.jpg" class="carousel-img" alt="...">
           <div class="carousel-content">
             <h1>{{ this.popularCars[1].name }}</h1>
@@ -46,7 +46,7 @@
             <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
               style="width: 30%;">Book</router-link>
           </div>
-        </div> -->
+        </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#popularCars" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -65,7 +65,7 @@
         <img src="@/assets/company.jpg" class="company-img">
       </div>
       <div class="company-info">
-        <h1 style="padding: 10px;">Why choose us?</h1>
+        <h1 style="padding: 10px; margin-left: 10px;">Why choose us?</h1>
         <div class="company-txt-columns">
           <div class="company-column">
             <div class="company-txt">

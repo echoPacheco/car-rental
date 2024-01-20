@@ -24,25 +24,6 @@
   transform: translate(-50%, -50%);
 }
 
-.carousel-item.active,
-.carousel-item-next,
-.carousel-item-prev {
-  display: flex;
-}
-
-.carousel-img {
-  width: 60vw;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.carousel-content {
-  width: 40%;
-  padding: 20px;
-  background-color: #222529;
-}
-
 .btn-info {
   background-color: #17a2b8;
   border: none;

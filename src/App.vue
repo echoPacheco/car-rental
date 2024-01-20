@@ -4,7 +4,6 @@
       <div class="nav-conteiner">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
-
             <router-link to="/" style="width: 5vw;"> <img src="@/assets/logo_light.png" style="width: 100%;"></router-link>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">

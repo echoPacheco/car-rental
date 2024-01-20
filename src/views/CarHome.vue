@@ -8,55 +8,7 @@
   </section>
 
   <section class="box">
-    <div id="popularCars" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#popularCars" data-bs-slide-to="0" class="active" aria-current="true"
-          aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#popularCars" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#popularCars" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="@/assets/popular2.jpg" class="carousel-img" alt="...">
-          <div class="carousel-content">
-            <h1>{{ this.popularCars[0].name }}</h1>
-            <p>{{ this.popularCars[0].type + " " + this.popularCars[0].price }}</p>
-            <i class="bi bi-fuel-pump-fill"></i>
-            <i class="bi bi-cash"></i>
-            <img src="@/assets/car_door.svg" class="svg-color">
-            <img src="@/assets/car_seat.svg" class="svg-color">
-            <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
-              style="width: 30%;">Book</router-link>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="@/assets/range_rover.jpg" class="carousel-img" alt="...">
-          <div class="carousel-content">
-            <h1>{{ this.popularCars[1].name }}</h1>
-            <p>{{ this.popularCars[1].type + " " + this.popularCars[1].price }}</p>
-            <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
-              style="width: 30%;">Book</router-link>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="@/assets/popular3.jpg" class="carousel-img" alt="...">
-          <div class="carousel-content">
-            <h1>{{ this.popularCars[2].name }}</h1>
-            <p>{{ this.popularCars[2].type + " " + this.popularCars[2].price }}</p>
-            <router-link to="/cars" type="button" class="btn btn-outline-light mt-4"
-              style="width: 30%;">Book</router-link>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#popularCars" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#popularCars" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+    <PopularCars :popularCars="popularCars"/>
   </section>
 
   <section class="box">
@@ -106,34 +58,45 @@
 </template>
   
 <script>
+import PopularCars from '@/components/PopularCars.vue';
+
 export default {
+  components: { PopularCars },
+
   data() {
     return {
       popularCars: [
         {
-          name: "Audi 6",
-          type: "Hatchback",
-          price: "90,00",
-          img: "@/assets/popular2.jpg"
+          name: "Audi A6",
+          price: "CAD 90,00",
+          gas: "12km/L",
+          doors: 4,
+          seats: 5,
+          transmission: "Automatic",
+          img: "popular2.jpg"
         },
         {
           name: "Range Rover",
-          type: "Hatchback",
-          price: "80,00",
-          img: "@/assets/popular2.jpg"
+          price: "CAD 80,00",
+          gas: "10km/L",
+          doors: 4,
+          seats: 5,
+          transmission: "Automatic",
+          img: "range_rover.jpg"
         },
         {
           name: "C 63 S Coupe",
-          type: "Sedan",
-          price: "120,00",
-          img: "@/assets/popular2.jpg"
+          price: "CAD 120,00",
+          gas: "14km/L",
+          doors: 4,
+          seats: 5,
+          transmission: "Automatic",
+          img: "popular3.jpg"
         }
       ],
     };
   },
-  methods: {
-
-  },
+  methods: {},
 };
 
 </script>

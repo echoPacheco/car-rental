@@ -32,14 +32,8 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-nav {
-  display: flex;
-  gap: 1em;
-}
-
-.footer-content {
-  margin-left: 10%;
-  margin-right: 5%;
+.navbar {
+  background-color: #222529;
 }
 
 .btn-outline-primary:active {
@@ -49,4 +43,10 @@ nav {
 }
 .svg-color {
   filter: grayscale(0%);
+}
+
+.box {
+  padding-left: 6%;
+  padding-right: 6%;
+  padding-top: 3%;
 }

@@ -68,8 +68,8 @@ export default {
       popularCars: [
         {
           name: "Audi A6",
-          price: "CAD 90,00",
-          gas: "12km/L",
+          price: "90,00",
+          gas: "12",
           doors: 4,
           seats: 5,
           transmission: "Automatic",
@@ -77,8 +77,8 @@ export default {
         },
         {
           name: "Range Rover",
-          price: "CAD 80,00",
-          gas: "10km/L",
+          price: "80,00",
+          gas: "10",
           doors: 4,
           seats: 5,
           transmission: "Automatic",
@@ -86,8 +86,8 @@ export default {
         },
         {
           name: "C 63 S Coupe",
-          price: "CAD 120,00",
-          gas: "14km/L",
+          price: "120,00",
+          gas: "14",
           doors: 4,
           seats: 5,
           transmission: "Automatic",

@@ -1,9 +1,8 @@
 <template>
-    <CarCard :carsInfo="carsInfo" />
+    <CarCard :searchParams="searchParams" />
 </template>
 <script>
 import CarCard from '@/components/CarCard.vue';
-// import axios from 'axios'
 
 export default {
   components: { CarCard },
@@ -15,6 +14,12 @@ export default {
       headersList: {
         "X-RapidAPI-Key": "06d7fdc0e9mshe9f97a1386a3867p149972jsnff19005f5513",
         "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com"
+      },
+      searchParams: {
+          "manufacturer": "tesla",
+          "year": 2020,
+          "model": "",
+          "fuel_type": "",
       },
       carsInfo: [{
         "city_mpg": 13,

@@ -2,24 +2,26 @@
   <div v-if="carsInfo" class="row row-cols-1 row-cols-md-6 g-2 ms-2">
     <div v-for="car in carsInfo" :key="car.make + '-' + car.model + '-' + car.year" class="col">
       <div class="card text-white bg-dark mb-3 mt-3 p-3">
-        <h5 class="card-title fs-4">{{ formatName(car.make) }} {{ formatName(car.model) }} </h5>
+        <h5 class="card-title fs-4" style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" :title="formatName(car.make) + ' ' + formatName(car.model)">
+          {{ formatName(car.make) }} {{ formatName(car.model) }}
+        </h5>
         <p class="flex mt-6 fs-4">
           <span class="self-start fs-6 ">$</span> {{ calculateCarRent(car.city_mpg, car.year) }}
           <span class="self-end fs-6 fw-medium">/day</span>
         </p>
 
-        <img :src="generateCarImageUrl(car.make, car.model, car.year)" class="card-img-top" alt="...">
+        <img :src="generateCarImageUrl(car.make, car.model, car.year)" class="card-img-top">
         <div class="card-body d-flex justify-content-between">
           <div class="col-4 text-center">
             <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
             <p>{{ car.transmission === 'a' ? 'Automatic' : 'Manual' }}</p>
           </div>
           <div class="col-4 text-center">
-            <img src="@/assets/tire.svg" width="20" height="20" alt="seat" />
+            <img src="@/assets/tire.svg" width="20" height="20" alt="tire" />
             <p>{{ car.drive.toUpperCase() }}</p>
           </div>
           <div class="col-4 text-center">
-            <img src="@/assets/gas.svg" width="20" height="20" alt="seat" />
+            <img src="@/assets/gas.svg" width="20" height="20" alt="gas" />
             <p>{{ car.combination_mpg + "MPG" }}</p>
           </div>
         </div>

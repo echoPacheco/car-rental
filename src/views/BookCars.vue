@@ -1,60 +1,50 @@
 <template>
-    <CarCard :searchParams="searchParams" />
+  <div class="row mt-4">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3 card text-white bg-dark ">
+      <FilterComponent v-model="searchParams" @applyFilters="applyFilters" />
+    </div>
+
+    <div class="col-md-7">
+      <div class="ms-4 me-4">
+        <CarCard :searchParams="searchParams" />
+      </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
 </template>
+
 <script>
-import CarCard from '@/components/CarCard.vue';
+import CarCard from "@/components/CarCard.vue";
+import FilterComponent from "@/components/FilterComponent.vue";
 
 export default {
-  components: { CarCard },
-
-
+  components: {
+    CarCard,
+    FilterComponent,
+  },
 
   data() {
     return {
-      headersList: {
-        "X-RapidAPI-Key": "06d7fdc0e9mshe9f97a1386a3867p149972jsnff19005f5513",
-        "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com"
-      },
       searchParams: {
-          "manufacturer": "audi",
-          "year": 2020,
-          "model": "",
-          "fuel_type": "",
+        manufacturer: "audi",
+        year: 2023,
+        model: "",
+        fuel_type: "",
       },
     };
   },
+
   methods: {
-
+    applyFilters(searchParams) {
+      this.searchParams = { ...searchParams };
+    },
   },
-  //   mounted() {
-  //     axios
-  //       .get('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars', {
-  //         headers: {
-  //           'X-RapidAPI-Key': '06d7fdc0e9mshe9f97a1386a3867p149972jsnff19005f5513',
-  //           'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
-  //         },
-  //         params: {
-  //           model: 'corolla'
-  //         }
-  //       })
-  //       .then((response) => console.log(response))
-  //       .catch((error) => console.error(error));
-  //   }
-}
-
-
+};
 </script>
-  
-<style scoped>
-/* Add component-specific styles here */
-h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
 
-p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
+<style scoped>
+/* Se necessário, adicione estilos específicos para este componente aqui */
 </style>
-  

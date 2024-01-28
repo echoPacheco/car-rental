@@ -1,8 +1,11 @@
 <template>
-  <div v-if="carsInfo" class="row row-cols-1 row-cols-md-6 g-2 ms-2">
-    <div v-for="car in carsInfo" :key="car.make + '-' + car.model + '-' + car.year" class="col">
-      <div class="card text-white bg-dark mb-3 mt-3 p-3">
-        <h5 class="card-title fs-4" style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" :title="formatName(car.make) + ' ' + formatName(car.model)">
+  <div v-if="paginatedCars" class="row row-cols-1 row-cols-md-3 g-4">
+    <div v-for="(car, index) in paginatedCars" :key="index" class="col mb-4">
+      <div class="card text-white bg-dark p-3" @mouseover="hoveredCar = car" @mouseout="hoveredCar = null"
+        :class="{ 'brighten': car === hoveredCar }">
+        <h5 class="card-title fs-4"
+          style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+          :title="formatName(car.make) + ' ' + formatName(car.model)">
           {{ formatName(car.make) }} {{ formatName(car.model) }}
         </h5>
         <p class="flex mt-6 fs-4">
@@ -10,7 +13,8 @@
           <span class="self-end fs-6 fw-medium">/day</span>
         </p>
 
-        <img :src="generateCarImageUrl(car.make, car.model, car.year)" class="card-img-top">
+        <img :src="generateCarImageUrl(car.make, car.model, car.year)" class="card-img-top img-fluid"
+          style="max-height: 250px; object-fit: cover;">
         <div class="card-body d-flex justify-content-between">
           <div class="col-4 text-center">
             <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
@@ -28,18 +32,26 @@
       </div>
     </div>
   </div>
+  <pagination-model :currentPage="currentPage" :totalPages="totalPages" @goToPage="goToPage" />
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
+import PaginationModel from "@/components/PaginationModel.vue";
 import { fetchCars } from '..\\utils\\api.js'
 
 export default {
   props: {
     searchParams: Object
   },
+  components: {
+    PaginationModel,
+  },
   setup(props) {
     const carsInfo = ref([]);
+    const hoveredCar = ref(null);
+    const itemsPerPage = 12;
+    const currentPage = ref(1);
 
     const loadCars = async () => {
       try {
@@ -50,7 +62,6 @@ export default {
           fuel_type: props.searchParams.fuel_type,
         };
         carsInfo.value = await fetchCars(filters);
-        console.log(carsInfo.value);
       } catch (error) {
         console.error('Error loading cars:', error);
       }
@@ -67,14 +78,9 @@ export default {
       url.searchParams.append("modelFamily", model);
       url.searchParams.append("zoomType", "fullscreen");
       url.searchParams.append("modelYear", `${year}`);
-      // url.searchParams.append('angle', `${angle}`);
 
       return `${url}`;
     };
-
-    onMounted(() => {
-      loadCars();
-    });
 
     const formatName = (str) => {
       return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -93,13 +99,45 @@ export default {
       return rentalRatePerDay.toFixed(0);
     };
 
+    const paginatedCars = computed(() => {
+      const startIndex = (currentPage.value - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return carsInfo.value.slice(startIndex, endIndex);
+    });
+
+    const totalPages = computed(() => Math.ceil(carsInfo.value.length / itemsPerPage));
+
+    const goToPage = (page) => {
+      currentPage.value = page;
+    };
+
+    onMounted(() => {
+      loadCars();
+    });
+
+    watch(() => props.searchParams, () => {
+      loadCars();
+      goToPage(1);
+    });
+
     return {
       carsInfo,
+      hoveredCar,
       loadCars,
       generateCarImageUrl,
       formatName,
       calculateCarRent,
+      paginatedCars,
+      currentPage,
+      totalPages,
+      goToPage,
     };
   },
 };
 </script>
+
+<style>
+.brighten {
+  filter: brightness(1.2);
+}
+</style>

@@ -20,7 +20,7 @@
             <div class="icon-text-container">
               <img src="@/assets/gas_pump_light.png" class="carousel-icons">
 
-              <p>{{ this.popularCars[0].gas }}</p>
+              <p>{{ this.popularCars[0].gas + " MPG" }}</p>
             </div>
 
             <div class="icon-text-container">
@@ -54,7 +54,7 @@
             <div class="icon-text-container">
               <img src="@/assets/gas_pump_light.png" class="carousel-icons">
 
-              <p>{{ this.popularCars[1].gas }}</p>
+              <p>{{ this.popularCars[1].gas + " MPG" }}</p>
             </div>
 
             <div class="icon-text-container">
@@ -88,7 +88,7 @@
             <div class="icon-text-container">
               <img src="@/assets/gas_pump_light.png" class="carousel-icons">
 
-              <p>{{ this.popularCars[2].gas && " MPG" }}</p>
+              <p>{{ this.popularCars[2].gas + " MPG" }}</p>
             </div>
 
             <div class="icon-text-container">

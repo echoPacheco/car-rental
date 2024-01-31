@@ -1,29 +1,5 @@
 <template>
   <div id="app">
-    <!-- <header>
-      <div class="nav-conteiner">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container-fluid">
-            <router-link to="/" style="width: 5vw;"> <img src="@/assets/logo_light.png"
-                style="width: 100%;"></router-link>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul class="navbar-nav me-auto mb-2 ms-2 mb-lg-0">
-                <li class="nav-item">
-                  <router-link to="/cars" class="nav-link">Book</router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link to="/about_us" class="nav-link disabled" aria-disabled="true">About Us</router-link>
-                </li>
-              </ul>
-              <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-secondary" style="color: white;" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header> -->
     <header>
       <div class="nav-conteiner">
         <nav class="navbar">
@@ -34,7 +10,6 @@
           <div class="menu-items">
             <div class="menu menu-left">
               <router-link to="/cars" class="nav-link">Book</router-link>
-              <router-link to="/about_us" class="nav-link disabled" aria-disabled="true">About Us</router-link>
             </div>
             <div class="search">
               <input value="Search or jump to..." />

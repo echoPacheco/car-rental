@@ -1,17 +1,17 @@
 <template>
   <div class="row mt-4">
-    <div class="col-md-1">
+    <div class="col-md-2">
     </div>
-    <div class="col-md-3 card text-white bg-dark ">
+    <div class="col-md-2 card text-white bg-dark ">
       <FilterComponent v-model="searchParams" @applyFilters="applyFilters" />
     </div>
 
-    <div class="col-md-7">
+    <div class="col-md-6">
       <div class="ms-4 me-4">
         <CarCard :searchParams="searchParams" />
       </div>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
     </div>
   </div>
 </template>
@@ -44,7 +44,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* Se necessário, adicione estilos específicos para este componente aqui */
-</style>

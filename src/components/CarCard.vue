@@ -3,35 +3,53 @@
     <div v-for="(car, index) in paginatedCars" :key="index" class="col mb-4">
       <div class="card text-white bg-dark p-3" @mouseover="hoveredCar = car" @mouseout="hoveredCar = null"
         :class="{ 'brighten': car === hoveredCar }">
-        <h5 class="card-title fs-4"
-          style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
-          :title="formatName(car.make) + ' ' + formatName(car.model)">
-          {{ formatName(car.make) }} {{ formatName(car.model) }}
-        </h5>
-        <p class="flex mt-6 fs-4">
-          <span class="self-start fs-6 ">$</span> {{ calculateCarRent(car.city_mpg, car.year) }}
-          <span class="self-end fs-6 fw-medium">/day</span>
-        </p>
+        <template v-if="car.make && car.model && car.year">
+          <div v-if="!imageLoaded[index]" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <h5 class="card-title fs-4"
+            style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+            :title="formatName(car.make) + ' ' + formatName(car.model)">
+            {{ formatName(car.make) }} {{ formatName(car.model) }}
+          </h5>
+          <p class="flex mt-6 fs-4">
+            <span class="self-start fs-6 ">$</span> {{ calculateCarRent(car.city_mpg, car.year) }}
+            <span class="self-end fs-6 fw-medium">/day</span>
+          </p>
 
-        <img :src="generateCarImageUrl(car.make, car.model, car.year)" class="card-img-top img-fluid"
-          style="max-height: 250px; object-fit: cover;">
-        <div class="card-body d-flex justify-content-between">
-          <div class="col-4 text-center">
-            <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
-            <p>{{ car.transmission === 'a' ? 'Automatic' : 'Manual' }}</p>
+          <img :ref="carImageRef(index)" :src="generateCarImageUrl(car.make, car.model, car.year)"
+            class="card-img-top img-fluid" style="max-height: 250px; object-fit: cover;" @load="onImageLoad(index)">
+
+          <div v-if="imageLoaded[index]" class="card-body d-flex justify-content-between">
+            <div class="col-4 text-center">
+              <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
+              <p>{{ car.transmission === 'a' ? 'Automatic' : 'Manual' }}</p>
+            </div>
+            <div class="col-4 text-center">
+              <img src="@/assets/tire.svg" width="20" height="20" alt="tire" />
+              <p>{{ car.drive.toUpperCase() }}</p>
+            </div>
+            <div class="col-4 text-center">
+              <img src="@/assets/gas.svg" width="20" height="20" alt="gas" />
+              <p>{{ car.combination_mpg + "MPG" }}</p>
+            </div>
           </div>
-          <div class="col-4 text-center">
-            <img src="@/assets/tire.svg" width="20" height="20" alt="tire" />
-            <p>{{ car.drive.toUpperCase() }}</p>
-          </div>
-          <div class="col-4 text-center">
-            <img src="@/assets/gas.svg" width="20" height="20" alt="gas" />
-            <p>{{ car.combination_mpg + "MPG" }}</p>
+        </template>
+        <div v-else>
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div v-else class="d-flex align-items-center justify-content-center" style="min-height: 300px;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   <pagination-model :currentPage="currentPage" :totalPages="totalPages" @goToPage="goToPage" />
 </template>
 
@@ -52,20 +70,22 @@ export default {
     const hoveredCar = ref(null);
     const itemsPerPage = 12;
     const currentPage = ref(1);
+    const imageLoaded = ref({});
 
     const loadCars = async () => {
-      try {
-        const filters = {
-          manufacturer: props.searchParams.manufacturer,
-          year: props.searchParams.year,
-          model: props.searchParams.model,
-          fuel_type: props.searchParams.fuel_type,
-        };
-        carsInfo.value = await fetchCars(filters);
-      } catch (error) {
-        console.error('Error loading cars:', error);
-      }
+  try {
+    imageLoaded.value = {};
+    const filters = {
+      manufacturer: props.searchParams.manufacturer,
+      year: props.searchParams.year,
+      model: props.searchParams.model,
+      fuel_type: props.searchParams.fuel_type,
     };
+    carsInfo.value = await fetchCars(filters);
+  } catch (error) {
+    console.error('Error loading cars:', error);
+  }
+};
 
     const generateCarImageUrl = (manufacturer, model, year) => {
       const url = new URL("https://cdn.imagin.studio/getimage");
@@ -99,6 +119,12 @@ export default {
       return rentalRatePerDay.toFixed(0);
     };
 
+    const carImageRef = (index) => `carImage-${index}`;
+
+    const onImageLoad = (index) => {
+      imageLoaded.value = { ...imageLoaded.value, [index]: true };
+    };
+
     const paginatedCars = computed(() => {
       const startIndex = (currentPage.value - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
@@ -127,10 +153,13 @@ export default {
       generateCarImageUrl,
       formatName,
       calculateCarRent,
+      imageLoaded,
       paginatedCars,
       currentPage,
       totalPages,
       goToPage,
+      onImageLoad,
+      carImageRef,
     };
   },
 };

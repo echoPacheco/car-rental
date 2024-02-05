@@ -1,17 +1,15 @@
 <template>
-  <div class="row mt-4">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-2 card text-white bg-dark ">
-      <FilterComponent v-model="searchParams" @applyFilters="applyFilters" />
-    </div>
-
-    <div class="col-md-6">
-      <div class="ms-4 me-4">
-        <CarCard :searchParams="searchParams" />
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-3 card text-white bg-dark">
+        <FilterComponent v-model="searchParams" @applyFilters="applyFilters" />
       </div>
-    </div>
-    <div class="col-md-2">
+
+      <div class="col-md-9">
+        <div class="ms-4 me-4">
+          <CarCard :searchParams="searchParams" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -3,16 +3,18 @@
     <header>
       <div class="nav-conteiner">
         <nav class="navbar">
-          <router-link to="/" class="ms-2" style="width: 5vw;"> <img src="@/assets/logo_light.png"
+          <router-link to="/" class="ms-3" style="width: 5vw;"> <img src="@/assets/logo_light.png"
               style="width: 100%; height: 100%;"></router-link>
-          <img onclick="document.body.classList.toggle('open')" class="burger" src="@/assets/menu.svg" />
-          <div></div>
-          <div class="menu-items">
+          <div class="menu-items me-3">
             <div class="menu menu-left">
               <router-link to="/cars" class="nav-link">Book</router-link>
             </div>
-            <div class="search">
-              <input value="Search or jump to..." />
+            <div class="menu menu-left">
+              <router-link to="/historic" class="nav-link">Historic</router-link>
+            </div>
+            <div class="menu menu-left">
+              <button v-if="isLoggedIn" @click="handleSignOut" class="nav-link">Sign Out</button>
+              <router-link v-if="!isLoggedIn" to="/sign-in" class="nav-link">Sign In</router-link>
             </div>
           </div>
         </nav>
@@ -21,38 +23,64 @@
     <main>
       <router-view></router-view>
     </main>
-    <footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 mt-4 border-top box">
-      <div class="col-md-3 d-flex align-items-center">
-        <a href="https://github.com/echoPacheco" target="_blank" rel="noopener noreferrer" class="text-light">
-          <i class="bi bi-github h4"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/mateus-pacheco-174b30185/" target="_blank" rel="noopener noreferrer"
-          class="text-light">
-          <i class="bi bi-linkedin h4 ms-3"></i>
-        </a>
-      </div>
-      <div class="col-md-4 text-center">
-        <router-link to="/"> <img src="@/assets/logo_light.png" style="width: 15%;"></router-link>
-      </div>
+    <footer class="pt-2 mt-4 border-top">
+      <div class="container mt-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
 
-      <div class="col-md-3 d-flex justify-content-end align-items-center">
-        <span class="mb-md-0">
-          <i class="bi bi-car-front-fill h4 me-2 align-middle"></i>
-          <span class="mb-0">Mateus Pacheco</span>
-        </span>
+          <div class="col-md-3 d-flex align-items-center">
+            <a href="https://github.com/echoPacheco" target="_blank" rel="noopener noreferrer" class="text-light">
+              <i class="bi bi-github h4"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mateus-pacheco-174b30185/" target="_blank" rel="noopener noreferrer"
+              class="text-light">
+              <i class="bi bi-linkedin h4 ms-3"></i>
+            </a>
+          </div>
+
+          <div class="col-md-6 text-center">
+            <router-link to="/">
+              <img src="@/assets/logo_light.png" style="width: 15%;">
+            </router-link>
+          </div>
+
+          <div class="col-md-3 d-flex justify-content-end align-items-center">
+            <span class="mb-md-0">
+              <i class="bi bi-car-front-fill h4 me-2 align-middle"></i>
+              <span class="mb-0">Mateus Pacheco</span>
+            </span>
+          </div>
+        </div>
       </div>
     </footer>
+
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      title: 'My Car',
-    };
-  },
-};
+<script setup>
+import { onMounted, ref } from "vue";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import router from "./router";
+
+const isLoggedIn = ref(false)
+
+let auth;
+onMounted(() => {
+  auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+  })
+})
+
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    router.push("/")
+  })
+}
+
 </script>
 
 <style>

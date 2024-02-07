@@ -1,62 +1,63 @@
 <template>
   <div v-if="paginatedCars" class="row row-cols-1 row-cols-md-3 g-4">
     <div v-for="(car, index) in paginatedCars" :key="index" class="col mb-4">
-      <div class="card text-white bg-dark p-3" @mouseover="hoveredCar = car" @mouseout="hoveredCar = null"
-        :class="{ 'brighten': car === hoveredCar }">
-        <template v-if="car.make && car.model && car.year">
-          <div v-if="!imageLoaded[index]" class="text-center">
+      <router-link :to="{ name: 'CheckoutDetail', params: { carData: JSON.stringify(car), carImage: generateCarImageUrl(car.make, car.model, car.year) } }">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</router-link>
+        <div class="card text-white bg-dark p-3" @mouseover="hoveredCar = car" @mouseout="hoveredCar = null"
+          :class="{ 'brighten': car === hoveredCar }">
+          <template v-if="car.make && car.model && car.year">
+            <div v-if="!imageLoaded[index]" class="text-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <h5 class="card-title fs-4"
+              style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+              :title="formatName(car.make) + ' ' + formatName(car.model)">
+              {{ formatName(car.make) }} {{ formatName(car.model) }}
+            </h5>
+            <p class="flex mt-6 fs-4">
+              <span class="self-start fs-6 ">$</span> {{ calculateCarRent(car.city_mpg, car.year) }}
+              <span class="self-end fs-6 fw-medium">/day</span>
+            </p>
+
+            <img :ref="carImageRef(index)" :src="generateCarImageUrl(car.make, car.model, car.year)"
+              class="card-img-top img-fluid" style="max-height: 250px; object-fit: cover;" @load="onImageLoad(index)">
+
+            <div v-if="imageLoaded[index]" class="card-body d-flex justify-content-between">
+              <div class="col-4 text-center">
+                <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
+                <p>{{ car.transmission === 'a' ? 'Automatic' : 'Manual' }}</p>
+              </div>
+              <div class="col-4 text-center">
+                <img src="@/assets/tire.svg" width="20" height="20" alt="tire" />
+                <p>{{ car.drive.toUpperCase() }}</p>
+              </div>
+              <div class="col-4 text-center">
+                <img src="@/assets/gas.svg" width="20" height="20" alt="gas" />
+                <p>{{ car.combination_mpg + "MPG" }}</p>
+              </div>
+            </div>
+          </template>
+          <div v-else>
             <div class="spinner-border text-primary" role="status">
               <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-          <h5 class="card-title fs-4"
-            style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
-            :title="formatName(car.make) + ' ' + formatName(car.model)">
-            {{ formatName(car.make) }} {{ formatName(car.model) }}
-          </h5>
-          <p class="flex mt-6 fs-4">
-            <span class="self-start fs-6 ">$</span> {{ calculateCarRent(car.city_mpg, car.year) }}
-            <span class="self-end fs-6 fw-medium">/day</span>
-          </p>
-
-          <img :ref="carImageRef(index)" :src="generateCarImageUrl(car.make, car.model, car.year)"
-            class="card-img-top img-fluid" style="max-height: 250px; object-fit: cover;" @load="onImageLoad(index)">
-
-          <div v-if="imageLoaded[index]" class="card-body d-flex justify-content-between">
-            <div class="col-4 text-center">
-              <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
-              <p>{{ car.transmission === 'a' ? 'Automatic' : 'Manual' }}</p>
-            </div>
-            <div class="col-4 text-center">
-              <img src="@/assets/tire.svg" width="20" height="20" alt="tire" />
-              <p>{{ car.drive.toUpperCase() }}</p>
-            </div>
-            <div class="col-4 text-center">
-              <img src="@/assets/gas.svg" width="20" height="20" alt="gas" />
-              <p>{{ car.combination_mpg + "MPG" }}</p>
-            </div>
-          </div>
-        </template>
-        <div v-else>
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div v-else class="d-flex align-items-center justify-content-center" style="min-height: 300px;">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
+  </div>
   <pagination-model :currentPage="currentPage" :totalPages="totalPages" @goToPage="goToPage" />
 </template>
 
 <script>
 import { ref, onMounted, computed, watch } from "vue";
 import PaginationModel from "@/components/PaginationModel.vue";
-import { fetchCars } from '..\\utils\\api.js'
+import { fetchCars } from "..\\utils\\api.js";
 
 export default {
   props: {
@@ -73,32 +74,27 @@ export default {
     const imageLoaded = ref({});
 
     const loadCars = async () => {
-  try {
-    imageLoaded.value = {};
-    const filters = {
-      manufacturer: props.searchParams.manufacturer,
-      year: props.searchParams.year,
-      model: props.searchParams.model,
-      fuel_type: props.searchParams.fuel_type,
+      try {
+        imageLoaded.value = {};
+        const filters = {
+          manufacturer: props.searchParams.manufacturer,
+          year: props.searchParams.year,
+          model: props.searchParams.model,
+          fuel_type: props.searchParams.fuel_type,
+        };
+        carsInfo.value = await fetchCars(filters);
+      } catch (error) {
+        console.error('Error loading cars:', error);
+      }
     };
-    carsInfo.value = await fetchCars(filters);
-  } catch (error) {
-    console.error('Error loading cars:', error);
-  }
-};
 
     const generateCarImageUrl = (manufacturer, model, year) => {
       const url = new URL("https://cdn.imagin.studio/getimage");
-
-      url.searchParams.append(
-        "customer",
-        process.env.VUE_APP_PUBLIC_IMAGIN_API_KEY || ""
-      );
+      url.searchParams.append("customer", process.env.VUE_APP_PUBLIC_IMAGIN_API_KEY || "");
       url.searchParams.append("make", manufacturer);
       url.searchParams.append("modelFamily", model);
       url.searchParams.append("zoomType", "fullscreen");
       url.searchParams.append("modelYear", `${year}`);
-
       return `${url}`;
     };
 
@@ -110,12 +106,9 @@ export default {
       const basePricePerDay = 50;
       const mileageFactor = 1.50;
       const ageFactor = 0.55;
-
       const mileageRate = city_mpg * mileageFactor;
       const ageRate = (year - new Date().getFullYear()) * ageFactor;
-
       const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
-
       return rentalRatePerDay.toFixed(0);
     };
 
@@ -168,5 +161,9 @@ export default {
 <style>
 .brighten {
   filter: brightness(1.2);
+}
+
+a {
+  text-decoration: none !important;
 }
 </style>

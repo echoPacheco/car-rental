@@ -3,6 +3,7 @@ import CarHome from "./views/CarHome.vue";
 import SignIn from "./views/SignIn.vue";
 import RegisterAccount from "./views/RegisterAccount.vue";
 import BookCars from "./views/BookCars.vue";
+import CheckoutDetail from "./views/CheckoutDetail.vue";
 import UserHistoric from "./views/UserHistoric.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -27,6 +28,15 @@ const routes = [
     path: "/cars",
     name: "cars",
     component: BookCars,
+  },
+  {
+    path: "/checkout/:carData/:carImage",
+    name: "CheckoutDetail",
+    component: CheckoutDetail,
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/historic",

@@ -9,7 +9,7 @@
                     <label>Email</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" required="" v-model="password" />
+                    <input type="password" required="" v-model="password" />
                     <label>Password</label>
                 </div>
                 <p v-if="errMsg">{{ errMsg }}</p>

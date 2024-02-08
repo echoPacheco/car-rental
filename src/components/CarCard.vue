@@ -1,7 +1,7 @@
 <template>
   <div v-if="paginatedCars" class="row row-cols-1 row-cols-md-3 g-4">
     <div v-for="(car, index) in paginatedCars" :key="index" class="col mb-4">
-      <router-link :to="{ name: 'CheckoutDetail', params: { carData: JSON.stringify(car), carImage: generateCarImageUrl(car.make, car.model, car.year) } }">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</router-link>
+      <router-link :to="{ name: 'CheckoutDetail', params: { carData: JSON.stringify(car), carImage: generateCarImageUrl(car.make, car.model, car.year) } }">
         <div class="card text-white bg-dark p-3" @mouseover="hoveredCar = car" @mouseout="hoveredCar = null"
           :class="{ 'brighten': car === hoveredCar }">
           <template v-if="car.make && car.model && car.year">
@@ -44,6 +44,7 @@
           </div>
         </div>
       </div>
+    </router-link>
     </div>
   </div>
   <div v-else class="d-flex align-items-center justify-content-center" style="min-height: 300px;">

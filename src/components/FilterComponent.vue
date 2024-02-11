@@ -5,19 +5,32 @@
         <label for="make" class="mr-2">Make:</label>
         <select v-model="make" class="form-control text-white bg-dark">
           <option disabled value="">Please select one</option>
-          <option v-for="(make, index) in manufacturers" :key="index">{{ make }}</option>
+          <option v-for="(make, index) in manufacturers" :key="index">
+            {{ make }}
+          </option>
         </select>
       </div>
 
       <div class="form-group mr-3">
         <label for="model" class="mr-2">Model:</label>
-        <input v-model="model" class="form-control form-control-sm text-white bg-dark" type="text" placeholder="Corolla">
+        <input
+          v-model="model"
+          class="form-control form-control-sm text-white bg-dark"
+          type="text"
+          placeholder="Corolla"
+        />
       </div>
 
       <div class="form-group mr-3">
         <label for="year" class="mr-2">Year:</label>
-        <div class="mb-3" style="display: flex; align-items: center;">
-          <input v-model="year" type="range" class="form-range p-3" min="2010" max="2023">
+        <div class="mb-3" style="display: flex; align-items: center">
+          <input
+            v-model="year"
+            type="range"
+            class="form-range p-3"
+            min="2010"
+            max="2023"
+          />
           <span class="text-white bg-dark input-group-text">{{ year }}</span>
         </div>
       </div>
@@ -25,30 +38,57 @@
       <div class="form-group">
         <label for="fuelType" class="mr-2">Fuel Type:</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="gas"
-            v-model="fuel_type">
-          <label class="form-check-label" for="flexRadioDefault1">Gasoline</label>
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+            value="gas"
+            v-model="fuel_type"
+          />
+          <label class="form-check-label" for="flexRadioDefault1"
+            >Gasoline</label
+          >
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="electricity"
-            v-model="fuel_type">
-          <label class="form-check-label" for="flexRadioDefault2">Electricity</label>
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            value="electricity"
+            v-model="fuel_type"
+          />
+          <label class="form-check-label" for="flexRadioDefault2"
+            >Electricity</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            value="diesel"
+            v-model="fuel_type"
+          />
+          <label class="form-check-label" for="flexRadioDefault2">Diesel</label>
         </div>
       </div>
     </form>
 
-    <button class="btn btn-outline-light me-2" @click="applyFilters()">Search</button>
+    <button class="btn btn-outline-light me-2" @click="applyFilters()">
+      Search
+    </button>
     <button class="btn btn-outline-light me-2" @click="reset()">Clear</button>
-
   </div>
 </template>
-  
-<script>
 
+<script>
 export default {
   data() {
     return {
-      make: "audi",
+      make: "",
       model: "",
       year: "2023",
       fuel_type: "",
@@ -96,21 +136,9 @@ export default {
         "Volvo",
       ],
       years: [
-        2010,
-        2011,
-        2012,
-        2013,
-        2014,
-        2015,
-        2016,
-        2017,
-        2018,
-        2019,
-        2020,
-        2021,
-        2022,
-        2023,
-      ]
+        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+        2022, 2023,
+      ],
     };
   },
 
@@ -125,12 +153,12 @@ export default {
       this.$emit("applyFilters", { ...this.searchParams });
     },
     reset() {
-      this.make = "audi",
+      this.make = "",
         this.model = "",
         this.year = 2023,
         this.fuel_type = "",
         this.searchParams = {
-          manufacturer: "audi",
+          manufacturer: "",
           model: "",
           year: "2023",
           fuel_type: "",
@@ -140,7 +168,7 @@ export default {
   },
 };
 </script>
-  
+
 <style>
 .brighten {
   filter: brightness(1.2);
@@ -158,4 +186,3 @@ export default {
   cursor: pointer;
 }
 </style>
-  

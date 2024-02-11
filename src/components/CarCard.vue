@@ -23,7 +23,7 @@
             <img :ref="carImageRef(index)" :src="generateCarImageUrl(car.make, car.model, car.year)"
               class="card-img-top img-fluid" style="max-height: 250px; object-fit: cover;" @load="onImageLoad(index)">
 
-            <div v-if="imageLoaded[index]" class="card-body d-flex justify-content-between">
+            <div v-if="imageLoaded[index]" class="d-flex justify-content-between">
               <div class="col-4 text-center">
                 <img src="@/assets/steering-wheel.svg" width="20" height="20" alt="steering wheel" />
                 <p>{{ car.transmission === 'a' ? 'Automatic' : 'Manual' }}</p>

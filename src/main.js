@@ -4,7 +4,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/global.scss";
 import router from "./router";
+
 import { initializeApp } from "firebase/app";
+import { getFirestore} from "firebase/firestore";
+
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIRE_BASE_API_KEY,
@@ -16,6 +21,11 @@ const firebaseConfig = {
   measurementId: process.env.VUE_APP_FIRE_BASE_MEASUREMENT_ID,
 };
 
-initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
+const db = getFirestore(firebase)
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(ElementPlus).mount("#app");
+
+export {
+  db
+}

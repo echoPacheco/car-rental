@@ -34,24 +34,15 @@
             <CheckoutConfirmation :carData="parsedCarData" :carImage="parsedCarImage" :orderData="orderData" />
           </div>
         </div>
-
-        <div v-show="currentStep === 4">
-          <h2 class="text-center">Confirmar e Finalizar</h2>
-          <!-- Adicione campos e lógica para confirmação final -->
-          <button @click="saveCheckoutData" class="btn btn-warning">
-            Confirmar e Finalizar
-          </button>
-        </div>
       </div>
     </div>
 
     <div class="row justify-content-center mt-3">
       <div class="col-md-6 text-center">
-        <button @click="decreaseStep" class="btn btn-outline-light me-2" v-if="currentStep !== 1">
+        <button @click="decreaseStep" class="btn btn-outline-light me-2" v-if="currentStep === 2">
           Back
         </button>
-        <button @click="increaseStep" class="btn btn-outline-light me-2" v-if="currentStep !== 2"
-          :disabled="currentStep === 4">
+        <button @click="increaseStep" class="btn btn-outline-light me-2" v-if="currentStep === 1">
           Next
         </button>
       </div>
@@ -94,11 +85,9 @@ export default {
     const parsedCarImage = ref(null);
     const currentStep = ref(1);
     const completedSteps = ref([]);
-    const steps = [1, 2, 3, 4];
-    const stepTitles = ["Review", "Payment", "Confirm", "Ready for pickup"];
+    const steps = [1, 2, 3];
+    const stepTitles = ["Review", "Payment", "Confirm"];
     const value = ref(null);
-    const defaultTime = ref(null);
-    const darkTheme = ref("dark");
 
     onMounted(() => {
       if (props.carData) {
@@ -110,7 +99,7 @@ export default {
     });
 
     const increaseStep = () => {
-      if (currentStep.value < 4) {
+      if (currentStep.value < 3) {
         completedSteps.value.push(currentStep.value);
         currentStep.value += 1;
       }
@@ -161,17 +150,15 @@ export default {
     // };
 
     return {
-      parsedCarData,
-      parsedCarImage,
-      currentStep,
-      completedSteps,
-      steps,
-      stepTitles,
       increaseStep,
       decreaseStep,
+      steps,
+      stepTitles,
+      currentStep,
+      completedSteps,
+      parsedCarData,
+      parsedCarImage,
       value,
-      defaultTime,
-      darkTheme,
       saveCheckoutData,
     };
   },

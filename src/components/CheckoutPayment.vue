@@ -119,7 +119,7 @@
         <h5>Total Value: $ {{ totalPrice }}</h5>
       </div>
       <div class="summary-content">
-        <button :disabled="!rentDays" @click="createNewOrder" class="btn btn-outline-light me-2">
+        <button :disabled="!daysDiff" @click="createNewOrder" class="btn btn-outline-light me-2">
           Submit Order
         </button>
       </div>
@@ -132,6 +132,8 @@ import { ref, onMounted } from 'vue'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/main"
 import { getAuth } from "firebase/auth";
+import { useRouter } from 'vue-router';
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 export default {
   props: {
@@ -157,6 +159,7 @@ export default {
     const auth = getAuth();
     const user = auth.currentUser;
     const uid = user !== null ? user.uid : null;
+    const router = useRouter();
     const rentDays = ref([])
     const phoneNumber = ref(null);
     const dailyPrice = ref(null);
@@ -291,6 +294,10 @@ export default {
     })
 
     const createNewOrder = async () => {
+      if (!user) {
+        open()
+        return;
+      }
       const rentedCar = {
         price: totalPrice.value,
         startDate: rentDays.value[0],
@@ -298,9 +305,29 @@ export default {
         carImg: props.carImage,
         carData: props.carData,
       };
+
       const res = await addDoc(collection(db, "rents", uid, "rentedCars"), rentedCar)
-      console.log(res);
       context.emit('increaseStep', res.data);
+    }
+    const open = () => {
+      ElMessageBox.confirm(
+        'You need to sign in before checkout. Continue?',
+        'Info',
+        {
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel',
+          type: 'warning',
+        }
+      )
+        .then(() => {
+          router.push('/sign-in');
+        })
+        .catch(() => {
+          ElMessage({
+            type: 'info',
+            message: 'Order canceled',
+          })
+        })
     }
 
     return {

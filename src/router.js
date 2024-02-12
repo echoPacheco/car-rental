@@ -34,9 +34,6 @@ const routes = [
     name: "CheckoutDetail",
     component: CheckoutDetail,
     props: true,
-    meta: {
-      requiresAuth: true,
-    },
   },
   {
     path: "/historic",

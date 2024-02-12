@@ -1,36 +1,40 @@
 <template>
-  <div>
-    <p>Order Successful! 🎉</p>
+  <hr>
+  <div class="checkout-container">
+    <h2>Order Successful! 🎉</h2>
 
-    <p>Thank you for choosing [Your Car Rental Company Name]! Your order has been successfully processed. You can now relax,
-      and we'll take care of the rest.</p>
+    <p>Thank you for choosing My Car! Your order has been successfully processed.</p>
 
     <p>Order Summary:</p>
     <ul>
       <li>Reservation ID: {{ orderID }}</li>
+      <li>Pickup Date: pickupDate </li>
+      <li>Return Date: returnDate </li>
+      <li>Car Model: carModel </li>
+      <li>Total Price: totalPrice </li>
+
       <!-- <li>Pickup Date: {{ pickupDate }}</li>
       <li>Return Date: {{ returnDate }}</li>
       <li>Car Model: {{ carModel }}</li>
       <li>Total Price: {{ totalPrice }}</li> -->
     </ul>
 
-    <p>What's Next?</p>
-
-    <p>Confirmation Email:</p>
-    <p>A detailed confirmation email has been sent to your registered email address. Please check your inbox, and make sure
-      to also look in your spam folder just in case.</p>
-
     <p>Manage Your Reservation:</p>
-    <p>You can view and manage your reservation anytime by visiting your [Your Car Rental Company Name] account's historic
+    <p>You can view and manage your reservation anytime by visiting your My Car account's historic
       page.</p>
 
     <p>Contact Us:</p>
-    <p>If you have any questions or need assistance, feel free to reach out to our customer support at [Your Customer Support
-      Email or Phone Number].</p>
+    <p>If you have any questions or need assistance, feel free to reach out to our customer support at support@mycar.com.
+    </p>
 
     <p>Thank you for choosing us, and we look forward to serving you. Safe travels!</p>
 
-    <p>[Go to Historic Page] [Return to Home]</p>
+    <div class="container-button">
+      <router-link to="/historic" type="button" class="btn btn-outline-light mt-4">Go to Historic
+        Page</router-link>
+      <router-link to="/" type="button" class="btn btn-outline-light mt-4">Return to
+        Home</router-link>
+    </div>
   </div>
 </template>
 
@@ -71,4 +75,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.container-button * {
+  margin-right: 20px;
+}
+</style>

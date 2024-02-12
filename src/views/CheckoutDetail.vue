@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <h1 class="p-2">Checkout</h1>
+    <h1 v-if="currentStep !== 3" class="p-2">Checkout</h1>
     <div class="justify-content-center ">
       <div class="text-center">
 
@@ -120,35 +120,6 @@ export default {
 
     };
 
-    // const saveCheckoutData = async () => {
-    //   const user = auth.currentUser;
-
-    //   if (!user) {
-    //     console.error("Usuário não autenticado. Não é possível salvar dados do checkout.");
-    //     return;
-    //   }
-
-    //   const checkoutCollection = collection(db, 'rents');
-
-    //   const checkoutData = {
-    //     make: "audi",
-    //     model: "a6",
-    //     img: "https://cdn.imagin.studio/getimage?customer=hrjavascript-mastery&make=audi&modelFamily=a3&zoomType=fullscreen&modelYear=2023",
-    //     price: 100.50,
-    //     start_date: "15/02/2024",
-    //     end_date: "16/02/2024",
-    //     userId: user.uid,
-    //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    //   };
-
-    //   try {
-    //     const docRef = await addDoc(checkoutCollection, checkoutData);
-    //     console.log("Dados do checkout adicionados com sucesso! ID do documento:", docRef.id);
-    //   } catch (error) {
-    //     console.error("Erro ao adicionar dados do checkout:", error);
-    //   }
-    // };
-
     return {
       increaseStep,
       decreaseStep,
@@ -164,7 +135,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 .container {

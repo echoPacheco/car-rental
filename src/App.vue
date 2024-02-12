@@ -16,6 +16,10 @@
               <button v-if="isLoggedIn" @click="handleSignOut" class="nav-link">Sign Out</button>
               <router-link v-if="!isLoggedIn" to="/sign-in" class="nav-link">Sign In</router-link>
             </div>
+            <div class="menu menu-left">
+              <img v-if="userPhotoURL" :src="userPhotoURL" alt="User Profile Photo" class="profile-photo">
+              <i v-else class="bi bi-person-circle"></i>
+            </div>
           </div>
         </nav>
       </div>
@@ -57,13 +61,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import router from "./router";
 
-const isLoggedIn = ref(false)
-
+const isLoggedIn = ref(false);
 let auth;
+
 onMounted(() => {
   auth = getAuth();
   onAuthStateChanged(auth, (user) => {
@@ -81,6 +85,12 @@ const handleSignOut = () => {
   })
 }
 
+const userPhotoURL = computed(() => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  return user ? user.photoURL : null;
+});
 </script>
 
 <style>
@@ -174,6 +184,12 @@ a:is(:visited, :active) {
   border-radius: inherit;
   background: transparent;
   color: #8b949e;
+}
+
+.profile-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 @media (width <=580px) {

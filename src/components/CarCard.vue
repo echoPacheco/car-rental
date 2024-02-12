@@ -58,7 +58,7 @@
 <script>
 import { ref, onMounted, computed, watch } from "vue";
 import PaginationModel from "@/components/PaginationModel.vue";
-import { fetchCars } from "..\\utils\\api.js";
+import { fetchCars } from "../../utils/api.js";
 
 export default {
   props: {

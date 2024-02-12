@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <div class="track-container">
       <div class="track">
         <div v-for="step in steps" :key="step" :class="{
@@ -24,13 +23,18 @@
           </div>
         </div>
 
-        <div v-show="currentStep === 2">
-          <CheckoutPayment :carData="parsedCarData" :carImage="parsedCarImage" />
+        <div v-if="parsedCarImage && parsedCarData">
+          <div v-show="currentStep === 2">
+            <CheckoutPayment :carData="parsedCarData" :carImage="parsedCarImage" @increaseStep="increaseStep" />
+          </div>
         </div>
-        
-        <div v-show="currentStep === 3">
-          <!-- Your content for step 3 -->
+
+        <div v-if="parsedCarImage && parsedCarData">
+          <div v-show="currentStep === 3">
+            <CheckoutConfirmation :carData="parsedCarData" :carImage="parsedCarImage" :orderData="orderData" />
+          </div>
         </div>
+
         <div v-show="currentStep === 4">
           <h2 class="text-center">Confirmar e Finalizar</h2>
           <!-- Adicione campos e lógica para confirmação final -->
@@ -46,7 +50,8 @@
         <button @click="decreaseStep" class="btn btn-outline-light me-2" v-if="currentStep !== 1">
           Back
         </button>
-        <button @click="increaseStep" class="btn btn-outline-light me-2" :disabled="currentStep === 4">
+        <button @click="increaseStep" class="btn btn-outline-light me-2" v-if="currentStep !== 2"
+          :disabled="currentStep === 4">
           Next
         </button>
       </div>
@@ -59,17 +64,30 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import CheckoutCar from "@/components/CheckoutCar.vue";
 import CheckoutPayment from "@/components/CheckoutPayment.vue";
+import CheckoutConfirmation from "@/components/CheckoutConfirmation.vue";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/main"
-
-// import { getAuth } from "firebase/auth";
 
 export default {
   props: {
     carData: String,
     carImage: String,
   },
-  components: { CheckoutCar, CheckoutPayment },
+  components: { CheckoutCar, CheckoutPayment, CheckoutConfirmation },
+  data() {
+    return {
+      orderData: null,
+    };
+  },
+  methods: {
+    handleOrderCreated(data) {
+      // Receive data from ChildOne
+      this.orderData = data;
+
+      // Emit a new event to ChildTwo
+      this.$emit('sendToChildTwo', data);
+    },
+  },
   setup(props) {
     const route = useRoute();
     const parsedCarData = ref(null);

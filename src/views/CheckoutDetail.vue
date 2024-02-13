@@ -56,8 +56,6 @@ import { useRoute } from "vue-router";
 import CheckoutCar from "@/components/CheckoutCar.vue";
 import CheckoutPayment from "@/components/CheckoutPayment.vue";
 import CheckoutConfirmation from "@/components/CheckoutConfirmation.vue";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/main"
 
 export default {
   props: {
@@ -112,14 +110,6 @@ export default {
       }
     };
 
-    const saveCheckoutData = async () => {
-      const querySnapshot = await getDocs(collection(db, "rents"))
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, "=>", doc.data());
-      })
-
-    };
-
     return {
       increaseStep,
       decreaseStep,
@@ -130,7 +120,6 @@ export default {
       parsedCarData,
       parsedCarImage,
       value,
-      saveCheckoutData,
     };
   },
 };

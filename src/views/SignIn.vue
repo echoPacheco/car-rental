@@ -15,7 +15,7 @@
                 <p v-if="errMsg">{{ errMsg }}</p>
             </div>
             <div class="buttons-container">
-                <button class="btn btn-outline-light me-2" @click="register">Login</button>
+                <button class="btn btn-outline-light me-2" @click="signIn">Login</button>
                 <div class="or-divider">or</div>
                 <button class="btn btn-outline-light me-2" @click="signInWithGoogle">
                     <i class="bi bi-google"></i> Continue with Google
@@ -38,10 +38,10 @@ import router from "@/router";
 const email = ref("");
 const password = ref("");
 const errMsg = ref();
-const register = () => {
+const signIn = (event) => {
+    event.preventDefault();
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
         .then(() => {
-            console.log("Successfully signed in!");
             router.push("/");
         })
         .catch((error) => {

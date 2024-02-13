@@ -3,12 +3,6 @@
         <form class="form">
             <div class="items">
                 <h1>Create your account</h1>
-
-                <div class="input-container">
-                    <input type="text" required="" v-model="name" />
-                    <label>Name</label>
-                </div>
-
                 <div class="input-container">
                     <input type="text" required="" v-model="email" />
                     <label>Email</label>
@@ -48,13 +42,13 @@ const verificationMsg = ref()
 const errMsg = ref()
 
 
-const register = () => {
+const register = (event) => {
     const auth = getAuth();
+    event.preventDefault();
 
     createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log("Successfully registered!");
             emailVerification(user);
             router.push('/');
         })

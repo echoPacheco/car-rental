@@ -156,9 +156,6 @@ export default {
     };
   },
   setup(props, context) {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user !== null ? user.uid : null;
     const router = useRouter();
     const rentDays = ref([])
     const phoneNumber = ref(null);
@@ -294,6 +291,9 @@ export default {
     })
 
     const createNewOrder = async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user !== null ? user.uid : null;
       if (!user) {
         open()
         return;

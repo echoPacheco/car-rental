@@ -112,6 +112,7 @@ nav {
 main {
   z-index: 100;
   padding-top: 60px;
+  min-height: 85vh;
 }
 
 nav img {

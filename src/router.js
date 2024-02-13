@@ -4,7 +4,7 @@ import SignIn from "./views/SignIn.vue";
 import RegisterAccount from "./views/RegisterAccount.vue";
 import BookCars from "./views/BookCars.vue";
 import CheckoutDetail from "./views/CheckoutDetail.vue";
-import UserHistoric from "./views/UserHistoric.vue";
+import PreviousBookings from "./views/PreviousBookings.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
@@ -36,9 +36,9 @@ const routes = [
     props: true,
   },
   {
-    path: "/historic",
-    name: "UserHistoric",
-    component: UserHistoric,
+    path: "/previousBookings",
+    name: "PreviousBookings",
+    component: PreviousBookings,
     meta: {
       requiresAuth: true,
     },

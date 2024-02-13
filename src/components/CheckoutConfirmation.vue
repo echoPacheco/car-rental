@@ -30,7 +30,7 @@
     <p>Thank you for choosing us, and we look forward to serving you. Safe travels!</p>
 
     <div class="container-button">
-      <router-link to="/historic" type="button" class="btn btn-outline-light mt-4">Go to Historic
+      <router-link to="/PreviousBookings" type="button" class="btn btn-outline-light mt-4">Go to Previous Bookings
         Page</router-link>
       <router-link to="/" type="button" class="btn btn-outline-light mt-4">Return to
         Home</router-link>
@@ -57,7 +57,6 @@ export default {
     onMounted(() => {
       // Set values based on the received props
       orderID.value = props.orderData;
-      console.log(props);
       // pickupDate.value = props.orderData.startDate;
       // returnDate.value = props.orderData.endDate;
       // carModel.value = props.carData.model;

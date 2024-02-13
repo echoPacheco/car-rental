@@ -10,7 +10,7 @@
               <router-link to="/cars" class="nav-link">Book</router-link>
             </div>
             <div class="menu menu-left">
-              <router-link to="/historic" class="nav-link">Historic</router-link>
+              <router-link to="/PreviousBookings" class="nav-link">Previous Bookings</router-link>
             </div>
             <div class="menu menu-left">
               <button v-if="isLoggedIn" @click="handleSignOut" class="nav-link">Sign Out</button>

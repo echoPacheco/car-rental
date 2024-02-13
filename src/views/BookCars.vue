@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       searchParams: {
-        manufacturer: "audi",
+        manufacturer: "",
         year: 2023,
         model: "",
         fuel_type: "",

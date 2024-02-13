@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form-inline">
+    <form class="form-inline" @submit.prevent="applyFilters">
       <div class="form-group mr-3">
         <label for="make" class="mr-2">Make:</label>
         <select v-model="make" class="form-control text-white bg-dark">

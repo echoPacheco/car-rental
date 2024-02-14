@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/main"
 import { getAuth } from "firebase/auth";
@@ -289,6 +289,15 @@ export default {
     onMounted(() => {
       calculateCarRent()
     })
+
+    watch(() => rentDays.value, () => {
+      if (rentDays.value === null) {
+        rentDays.value = []
+        taxPrice.value = 0
+        totalPrice.value = 0
+        daysDiff.value = 0
+      }
+    });
 
     const createNewOrder = async () => {
       const auth = getAuth();

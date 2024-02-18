@@ -10,6 +10,7 @@ import { getFirestore} from "firebase/firestore";
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIRE_BASE_API_KEY,

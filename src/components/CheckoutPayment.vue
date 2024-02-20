@@ -119,9 +119,9 @@
         <h5>Total Value: $ {{ totalPrice }}</h5>
       </div>
       <div class="summary-content">
-        <button :disabled="!daysDiff" @click="createNewOrder" class="btn btn-outline-light me-2">
+        <el-button :disabled="!daysDiff" @click="createNewOrder" v-loading.fullscreen.lock="screenLoading" class="btn btn-outline-light me-2">
           Submit Order
-        </button>
+        </el-button>
       </div>
     </div>
   </div>
@@ -163,6 +163,7 @@ export default {
     const taxPrice = ref(0);
     const totalPrice = ref(0);
     const daysDiff = ref(null)
+    const screenLoading = ref(false)
 
     const provinces = ref([
       {
@@ -300,10 +301,12 @@ export default {
     });
 
     const createNewOrder = async () => {
+      screenLoading.value = true
       const auth = getAuth();
       const user = auth.currentUser;
       const uid = user !== null ? user.uid : null;
       if (!user) {
+        screenLoading.value = false
         open()
         return;
       }
@@ -316,6 +319,7 @@ export default {
       };
 
       const res = await addDoc(collection(db, "rents", uid, "rentedCars"), rentedCar)
+      screenLoading.value = false
       context.emit('increaseStep', res.data);
     }
     const open = () => {
@@ -355,6 +359,7 @@ export default {
       taxPrice,
       daysDiff,
       totalPrice,
+      screenLoading,
     }
   },
 };

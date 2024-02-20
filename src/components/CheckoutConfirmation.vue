@@ -5,26 +5,10 @@
 
     <p>Thank you for choosing My Car! Your order has been successfully processed.</p>
 
-    <p>Order Summary:</p>
-    <ul>
-      <li>Reservation ID: {{ orderID }}</li>
-      <li>Pickup Date: pickupDate </li>
-      <li>Return Date: returnDate </li>
-      <li>Car Model: carModel </li>
-      <li>Total Price: totalPrice </li>
-
-      <!-- <li>Pickup Date: {{ pickupDate }}</li>
-      <li>Return Date: {{ returnDate }}</li>
-      <li>Car Model: {{ carModel }}</li>
-      <li>Total Price: {{ totalPrice }}</li> -->
-    </ul>
-
-    <p>Manage Your Reservation:</p>
     <p>You can view and manage your reservation anytime by visiting your My Car account's historic
       page.</p>
 
-    <p>Contact Us:</p>
-    <p>If you have any questions or need assistance, feel free to reach out to our customer support at support@mycar.com.
+    <p>If you have any questions or need assistance, feel free to reach out to our customer support at pachecomateus.dev@gmail.com.
     </p>
 
     <p>Thank you for choosing us, and we look forward to serving you. Safe travels!</p>

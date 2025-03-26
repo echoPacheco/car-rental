@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const infoCarsBaseURL = "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars";
+const infoCarsBaseURL = "https://api.api-ninjas.com/v1/cars";
 
 export async function fetchCars(filters) {
   const { manufacturer, year, model, fuel_type } = filters;
 
   const headers = {
-    "X-RapidAPI-Key": process.env.VUE_APP_RAPID_API_KEY || "",
-    "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
+    "X-API-Key": process.env.VUE_APP_RAPID_API_KEY || ""
   };
   try {
     const response = await axios.get(`${infoCarsBaseURL}`, {
@@ -16,9 +15,8 @@ export async function fetchCars(filters) {
         year: year,
         model: model,
         fuel_type: fuel_type,
-        limit: 30,
       },
-      headers: headers,
+      headers: headers, 
     });
     return response.data;
   } catch (error) {
